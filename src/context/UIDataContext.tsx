@@ -16,6 +16,7 @@ export interface IUIDataContext {
 	handleRemoveCategory: (_id: string) => void;
 	handleAddTask: (newTask: ITask) => void;
 	handleRemoveTask: (_id: string) => void;
+	handleToggleTask: (_id: string) => void;
 }
 
 export const UIDataContext = createContext<IUIDataContext | null>(null);
@@ -140,6 +141,30 @@ export const UIDataProvider = ({ children }: IChildren) => {
 		}
 	};
 
+	const handleToggleTask = async (_id: string) => {
+		if (token) {
+			const updateCategoryTasks: ITask[] = categoryTasks.map(task => {
+				if (task._id === _id) {
+					return {
+						...task,
+						isCompleted: !task.isCompleted,
+					};
+				} else {
+					return task;
+				}
+			});
+
+			setCategoryTasks(updateCategoryTasks);
+			await handleApiRequest({
+				url: `http://localhost:5000/toggleTask/${_id}`,
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${JSON.parse(token)}`,
+				},
+			});
+		}
+	};
+
 	return (
 		<UIDataContext.Provider
 			value={{
@@ -150,6 +175,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 				handleRemoveCategory,
 				handleAddTask,
 				handleRemoveTask,
+				handleToggleTask,
 			}}
 		>
 			{children}

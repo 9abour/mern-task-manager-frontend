@@ -12,18 +12,14 @@ import {
 import handleApiRequest from "@/helpers/handleApiRequest";
 import { ITask, ITaskCategory } from "@/types/task.types";
 import { UserContext } from "../../context/UserContext";
-import Cookies from "js-cookie";
 import { UIDataContext } from "../../context/UIDataContext";
 
 const TaskListItem = ({ task }: { task: ITask }) => {
-	const [isCompleted, setIsCompleted] = useState(task.isCompleted);
 	const [taskCategories, setTaskCategories] = useState<ITaskCategory[]>([]);
 	const { user } = useContext(UserContext);
 	const uiDataContext = useContext(UIDataContext);
 
-	const token = Cookies.get("token");
-
-	const { _id, name, description, xp } = task;
+	const { _id, name, description, xp, isCompleted } = task;
 	const getListCategories = async (taskId: string) => {
 		const categories: ITaskCategory[] = await handleApiRequest({
 			url: `http://localhost:5000/taskCategories/${taskId}`,
@@ -38,15 +34,8 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 	}, []);
 
 	const toggle = async () => {
-		if (token && user) {
-			setIsCompleted(prev => !prev);
-			await handleApiRequest({
-				url: `http://localhost:5000/toggleTask/${_id}`,
-				method: "POST",
-				headers: {
-					Authorization: `Bearer ${JSON.parse(token)}`,
-				},
-			});
+		if (user) {
+			uiDataContext?.handleToggleTask(_id);
 		}
 	};
 
