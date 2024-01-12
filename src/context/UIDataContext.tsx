@@ -152,6 +152,14 @@ export const UIDataProvider = ({ children }: IChildren) => {
 
 	const handleToggleTask = async (_id: string) => {
 		if (token) {
+			await handleApiRequest({
+				url: `http://localhost:5000/toggleTask/${_id}`,
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${JSON.parse(token)}`,
+				},
+			});
+
 			const updateCategoryTasks: ITask[] = categoryTasks.map(task => {
 				if (task._id === _id) {
 					return {
@@ -164,13 +172,6 @@ export const UIDataProvider = ({ children }: IChildren) => {
 			});
 
 			setCategoryTasks(updateCategoryTasks);
-			await handleApiRequest({
-				url: `http://localhost:5000/toggleTask/${_id}`,
-				method: "POST",
-				headers: {
-					Authorization: `Bearer ${JSON.parse(token)}`,
-				},
-			});
 		}
 	};
 
