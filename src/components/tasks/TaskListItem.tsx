@@ -39,6 +39,15 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 		}
 	};
 
+	const removeTask = () => {
+		if (uiDataContext && uiDataContext.currentCategoryInfo) {
+			uiDataContext.handleRemoveTask({
+				taskId: _id,
+				categoryId: uiDataContext.currentCategoryInfo._id,
+			});
+		}
+	};
+
 	return (
 		<TasksListItemStyled>
 			{user ? (
@@ -98,9 +107,7 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 			</TasksListItemInfoStyled>
 
 			{user ? (
-				<TasksListItemRemoveStyled
-					onClick={() => uiDataContext?.handleRemoveTask(_id)}
-				>
+				<TasksListItemRemoveStyled onClick={removeTask}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="32"

@@ -15,7 +15,10 @@ export interface IUIDataContext {
 	handleAddCategory: (category: ICategory) => void;
 	handleRemoveCategory: (_id: string) => void;
 	handleAddTask: (newTask: ITask) => void;
-	handleRemoveTask: (_id: string) => void;
+	handleRemoveTask: (dataPayload: {
+		taskId: string;
+		categoryId: string;
+	}) => void;
 	handleToggleTask: (_id: string) => void;
 }
 
@@ -120,20 +123,26 @@ export const UIDataProvider = ({ children }: IChildren) => {
 		} catch (error) {}
 	};
 
-	const handleRemoveTask = async (_id: string) => {
+	const handleRemoveTask = async (dataPayload: {
+		taskId: string;
+		categoryId: string;
+	}) => {
 		try {
 			if (!token) {
 				return;
 			}
 			await handleApiRequest({
-				url: `http://localhost:5000/tasks/${_id}`,
+				url: `http://localhost:5000/tasks`,
 				method: "DELETE",
+				dataPayload: dataPayload,
 				headers: {
 					Authorization: `Bearer ${JSON.parse(token)}`,
 				},
 			});
 
-			const filteredTasks = categoryTasks.filter(task => task._id !== _id);
+			const filteredTasks = categoryTasks.filter(
+				task => task._id !== dataPayload.taskId
+			);
 
 			setCategoryTasks(filteredTasks);
 		} catch (error: any) {
