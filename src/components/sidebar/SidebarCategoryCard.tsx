@@ -21,15 +21,17 @@ const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 	const { tasksCount, tasksXP } = categoryTasksCount;
 
 	useEffect(() => {
-		(async () => {
-			const data: ICategoryCount = await handleApiRequest({
-				url: `http://localhost:5000/categories/tasksCount/${_id}`,
-				method: "GET",
-			});
+		setTimeout(() => {
+			(async () => {
+				const data: ICategoryCount = await handleApiRequest({
+					url: `http://localhost:5000/categories/tasksCount/${_id}`,
+					method: "GET",
+				});
 
-			setCategoryTasksCount(data);
-		})();
-	}, []);
+				setCategoryTasksCount(data);
+			})();
+		}, 1000);
+	}, [uiData?.categoryTasks]);
 
 	const isCategoryActive = _id === slug;
 

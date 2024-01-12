@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	SidebarCategoriesListStyled,
 	SidebarCategoriesWrapperStyled,
@@ -15,9 +15,11 @@ const CategoriesList = () => {
 			<h2>Categories</h2>
 
 			<SidebarCategoriesListStyled>
-				{uiData?.categories.map(category => (
-					<SidebarCategoryCard key={category.name} category={category} />
-				))}
+				{uiData?.categories.length
+					? uiData.categories.map(category => (
+							<SidebarCategoryCard key={category.name} category={category} />
+					  ))
+					: null}
 			</SidebarCategoriesListStyled>
 
 			<AddCategory />
