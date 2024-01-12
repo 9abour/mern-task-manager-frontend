@@ -3,7 +3,7 @@ import { SidebarCategoryCardStyled } from "./styles/sidebar.styles";
 import { useParams, useRouter } from "next/navigation";
 import { ICategory, ICategoryCount } from "@/types/category.types";
 import handleApiRequest from "@/helpers/handleApiRequest";
-import { UIDataContext } from "../context/UIDataContext";
+import { UIDataContext } from "../../context/UIDataContext";
 
 const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 	const [categoryTasksCount, setCategoryTasksCount] = useState<ICategoryCount>({

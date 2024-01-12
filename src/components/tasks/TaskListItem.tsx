@@ -11,9 +11,9 @@ import {
 } from "./styles/index.styles";
 import handleApiRequest from "@/helpers/handleApiRequest";
 import { ITask, ITaskCategory } from "@/types/task.types";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import Cookies from "js-cookie";
-import { UIDataContext } from "../context/UIDataContext";
+import { UIDataContext } from "../../context/UIDataContext";
 
 const TaskListItem = ({ task }: { task: ITask }) => {
 	const [isCompleted, setIsCompleted] = useState(task.isCompleted);

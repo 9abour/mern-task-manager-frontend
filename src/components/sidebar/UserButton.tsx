@@ -6,8 +6,8 @@ import {
 import Image from "next/image";
 import { Button } from "@/styles/button/button.styles";
 import Link from "next/link";
-import { UserContext } from "../context/UserContext";
-import { redirect, useRouter } from "next/navigation";
+import { UserContext } from "../../context/UserContext";
+import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
 const UserButton = () => {
@@ -17,7 +17,6 @@ const UserButton = () => {
 
 	const logout = () => {
 		Cookies.remove("token");
-		location.href = "/";
 	};
 
 	return (
@@ -25,12 +24,17 @@ const UserButton = () => {
 			{user ? (
 				<SidebarProfileStyled>
 					<Link href={"/profile"}>
-						<Image
-							src="https://media.licdn.com/dms/image/D4D03AQEYjYhsE6aTPQ/profile-displayphoto-shrink_800_800/0/1700991891641?e=1710374400&v=beta&t=AObqvoGtKWfcqZgfbN7RWCj4W9w0T6Zfk9cro8hnvUQ"
-							width={50}
-							height={50}
-							alt="user-image"
-						/>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 24 24"
+						>
+							<path
+								fill="currentColor"
+								d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12m-8 8v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20z"
+							/>
+						</svg>
 						<h4>{user.name}</h4>
 					</Link>
 

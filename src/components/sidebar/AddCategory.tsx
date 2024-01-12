@@ -3,11 +3,11 @@ import {
 	AddCategoryFormStyled,
 	SidebarAddCategoryStyled,
 } from "./styles/sidebar.styles";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { AddTaskInputStyled } from "../tasks/styles/index.styles";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { UIDataContext } from "../context/UIDataContext";
+import { UIDataContext } from "../../context/UIDataContext";
 
 const AddCategory = () => {
 	const [isFormOpen, setIsFormOpen] = useState(false);

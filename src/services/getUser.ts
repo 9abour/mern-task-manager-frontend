@@ -1,4 +1,4 @@
-import { IUser } from "@/components/context/UserContext";
+import { IUser } from "@/context/UserContext";
 import handleApiRequest from "@/helpers/handleApiRequest";
 
 export const getUser = async (token: string): Promise<IUser | null> => {

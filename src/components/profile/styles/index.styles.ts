@@ -14,11 +14,15 @@ export const UserProfileWrapperStyled = styled.section`
 		align-items: center;
 		gap: 1rem;
 
-		img {
+		svg {
 			border-radius: 50%;
 			box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 				rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
 				rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+			background-color: ${({ theme }) => theme.colors.secondaryBackground};
+			color: ${({ theme }) => theme.colors.primary};
+			border: 1px solid ${({ theme }) => theme.colors.gray};
+			padding: 1rem;
 		}
 
 		h2 {
@@ -32,14 +36,13 @@ export const UserProfileWrapperStyled = styled.section`
 		span {
 			color: ${({ theme }) => theme.colors.primary};
 		}
-
-		button {
-			color: ${({ theme }) => theme.colors.gray};
-			background-color: transparent;
-			border: none;
-			cursor: pointer;
-			font-size: 16px;
-		}
+	}
+	button {
+		color: ${({ theme }) => theme.colors.gray};
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		font-size: 16px;
 	}
 `;
 

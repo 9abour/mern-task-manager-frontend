@@ -10,9 +10,9 @@ import TaskListItem from "./TaskListItem";
 import { TasksTitle } from "@/styles/typography/title.styles";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import Cookies from "js-cookie";
-import { UIDataContext } from "../context/UIDataContext";
+import { UIDataContext } from "../../context/UIDataContext";
 
 const TaskList = () => {
 	const { slug } = useParams();

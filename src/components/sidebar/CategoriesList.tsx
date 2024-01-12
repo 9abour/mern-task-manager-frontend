@@ -5,7 +5,7 @@ import {
 } from "./styles/sidebar.styles";
 import SidebarCategoryCard from "./SidebarCategoryCard";
 import AddCategory from "./AddCategory";
-import { UIDataContext } from "../context/UIDataContext";
+import { UIDataContext } from "../../context/UIDataContext";
 
 const CategoriesList = () => {
 	const uiData = useContext(UIDataContext);

@@ -26,7 +26,6 @@ const Login = () => {
 			});
 
 			Cookies.set("token", JSON.stringify(token));
-			location.href = "/";
 		} catch (error) {
 			console.error(error);
 		}
