@@ -110,6 +110,10 @@ export const AddTaskFormStyled = styled.form`
 	border-top: 1px solid ${({ theme }) => theme.colors.gray};
 	background-color: ${({ theme }) => theme.colors.secondaryBackground};
 
+	@media (max-width: 650px) {
+		width: calc(100% - 15px);
+	}
+
 	input:last-of-type {
 		width: 50%;
 	}
