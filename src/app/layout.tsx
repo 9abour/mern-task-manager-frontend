@@ -18,7 +18,7 @@ export default function RootLayout({ children }: IChildren) {
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<Toaster position="bottom-right" richColors />
+				<Toaster position="top-right" richColors />
 				<UserProvider>
 					<ThemeProvider>
 						<UIDataProvider>{children}</UIDataProvider>
