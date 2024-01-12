@@ -4,6 +4,7 @@ export const FormWrapperStyled = styled.div`
 	height: 100vh;
 	display: grid;
 	place-items: center;
+	padding: 0 1rem;
 `;
 
 export const FormStyled = styled.form`
