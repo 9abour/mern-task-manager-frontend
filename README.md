@@ -70,5 +70,5 @@ After adding, if the task's name and description were duplicated, it would grab 
 ![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066080/dblysz39grm8old7zawp.png)
 ![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066080/xdsv27aqt3zozsqncnrh.png)
 ![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066080/z5mkvoll5djhjtsfpwtb.png)
-![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066079/co8zknyrcjoimmky8llk.png)
 ![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066081/xnbyiljm55kw0vsqkzph.png)
+![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066079/co8zknyrcjoimmky8llk.png)
