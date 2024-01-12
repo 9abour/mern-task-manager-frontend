@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TasksWrapperStyled = styled.div`
+export const TasksWrapperStyled = styled.main`
 	position: relative;
 	width: calc(100% - 300px);
 	height: 100vh;

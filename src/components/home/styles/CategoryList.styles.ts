@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CategoryListWrapper = styled.section`
+export const CategoryListWrapper = styled.main`
 	max-width: 1400px;
 	height: 100vh;
 	display: grid;
