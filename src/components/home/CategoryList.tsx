@@ -10,6 +10,7 @@ import { CategoryTitle } from "@/styles/typography/title.styles";
 import CategoryCard from "./CategoryCard";
 import handleApiRequest from "@/helpers/handleApiRequest";
 import { ICategory } from "@/types/category.types";
+import Loader from "../common/Loader";
 
 const CategoryList = () => {
 	const [categoriesListData, setCategoriesListData] = useState<ICategory[]>([]);
@@ -38,7 +39,7 @@ const CategoryList = () => {
 					</CategoryListItems>
 				</CategoryListItemsWrapper>
 			) : (
-				<h2>Loading...</h2>
+				<Loader />
 			)}
 		</CategoryListWrapper>
 	);

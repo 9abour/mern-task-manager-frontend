@@ -13,6 +13,7 @@ import { useParams, useRouter } from "next/navigation";
 import { UserContext } from "../../context/UserContext";
 import Cookies from "js-cookie";
 import { UIDataContext } from "../../context/UIDataContext";
+import Loader from "../common/Loader";
 
 const TaskList = () => {
 	const { slug } = useParams();
@@ -70,7 +71,7 @@ const TaskList = () => {
 					</TasksListWrapperStyled>
 				</>
 			) : (
-				<h2>Loading...</h2>
+				<Loader />
 			)}
 			<AddTaskFormStyled onSubmit={handleSubmit}>
 				<AddTaskInputStyled
