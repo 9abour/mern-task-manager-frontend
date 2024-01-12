@@ -27,7 +27,9 @@ const handleApiRequest = async <T>({
 
 		return data;
 	} catch (error: any) {
-		error.response.data.errors.map((error: any) => toast.error(error.msg));
+		if (error.response.data.errors.length) {
+			error.response.data.errors.map((error: any) => toast.error(error.msg));
+		}
 		throw error;
 	}
 };
