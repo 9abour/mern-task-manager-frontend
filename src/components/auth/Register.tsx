@@ -5,15 +5,12 @@ import { Button } from "@/styles/button/button.styles";
 import { FormStyled, FormWrapperStyled } from "@/styles/form/index.styles";
 import { PrimaryInputStyled } from "@/styles/input/index.styles";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 
 const Register = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
-	const { push } = useRouter();
 
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -33,7 +30,7 @@ const Register = () => {
 			setEmail("");
 			setPassword("");
 
-			push("/auth/login");
+			location.href = "/auth/login";
 		} catch (error) {
 			throw error;
 		}

@@ -17,6 +17,7 @@ const UserButton = () => {
 
 	const logout = () => {
 		Cookies.remove("token");
+		location.href = "/";
 	};
 
 	return (

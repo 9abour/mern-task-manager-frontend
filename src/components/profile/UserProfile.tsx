@@ -2,7 +2,6 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { UserProfileWrapperStyled } from "./styles/index.styles";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { UserContext } from "../../context/UserContext";
 import { ITask } from "@/types/task.types";
