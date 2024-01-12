@@ -76,7 +76,7 @@ const Profile = () => {
 
 					<hr />
 
-					{userCompletedTasks.length ? (
+					{userCompletedTasks.length > 0 ? (
 						<>
 							<p>Your completed tasks</p>
 							{userCompletedTasks.map(task => (

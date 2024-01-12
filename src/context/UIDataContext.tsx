@@ -34,7 +34,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	const { slug } = useParams();
 
 	useEffect(() => {
-		if (slug) {
+		if (slug && slug !== "add") {
 			(async () => {
 				const tasksRes: {
 					tasks: ITask[];

@@ -11,9 +11,14 @@ import CategoryCard from "./CategoryCard";
 import handleApiRequest from "@/helpers/handleApiRequest";
 import { ICategory } from "@/types/category.types";
 import Loader from "../common/Loader";
+import { Button } from "@/styles/button/button.styles";
+import { useRouter } from "next/navigation";
 
 const CategoryList = () => {
 	const [categoriesListData, setCategoriesListData] = useState<ICategory[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
+
+	const { push } = useRouter();
 
 	useEffect(() => {
 		(async () => {
@@ -25,6 +30,16 @@ const CategoryList = () => {
 			setCategoriesListData(data);
 		})();
 	}, []);
+
+	useEffect(() => {
+		if (!categoriesListData.length) {
+			setTimeout(() => {
+				if (!categoriesListData.length) {
+					setIsLoading(false);
+				}
+			}, 2000);
+		}
+	}, [categoriesListData]);
 
 	return (
 		<CategoryListWrapper>
@@ -38,8 +53,10 @@ const CategoryList = () => {
 						))}
 					</CategoryListItems>
 				</CategoryListItemsWrapper>
-			) : (
+			) : isLoading ? (
 				<Loader />
+			) : (
+				<Button onClick={() => push("/category/add")}>Add category</Button>
 			)}
 		</CategoryListWrapper>
 	);

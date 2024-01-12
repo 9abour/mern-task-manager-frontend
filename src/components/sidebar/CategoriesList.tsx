@@ -10,6 +10,17 @@ import Loader from "../common/Loader";
 
 const CategoriesList = () => {
 	const uiData = useContext(UIDataContext);
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		if (!uiData?.categoryTasks.length) {
+			setTimeout(() => {
+				if (!uiData?.categoryTasks.length) {
+					setIsLoading(false);
+				}
+			}, 2000);
+		}
+	}, [uiData?.categoryTasks]);
 
 	return (
 		<SidebarCategoriesWrapperStyled>
@@ -24,8 +35,10 @@ const CategoriesList = () => {
 					</SidebarCategoriesListStyled>
 					<AddCategory />
 				</>
-			) : (
+			) : isLoading ? (
 				<Loader />
+			) : (
+				<AddCategory />
 			)}
 		</SidebarCategoriesWrapperStyled>
 	);

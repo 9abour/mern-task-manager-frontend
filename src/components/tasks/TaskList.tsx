@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	AddTaskButtonStyled,
 	AddTaskInputStyled,
@@ -21,6 +21,7 @@ const TaskList = () => {
 	const uiDataContext = useContext(UIDataContext);
 	const categoryTasks = uiDataContext?.categoryTasks;
 	const categoryInfo = uiDataContext?.currentCategoryInfo;
+	const [isLoading, setIsLoading] = useState(true);
 
 	const token = Cookies.get("token");
 
@@ -57,6 +58,16 @@ const TaskList = () => {
 		formElement.reset();
 	};
 
+	useEffect(() => {
+		if (!categoryTasks?.length) {
+			setTimeout(() => {
+				if (!categoryTasks?.length) {
+					setIsLoading(false);
+				}
+			}, 2000);
+		}
+	}, [categoryTasks]);
+
 	return (
 		<TasksWrapperStyled>
 			<Link href="/">/Home</Link>
@@ -71,7 +82,7 @@ const TaskList = () => {
 					</TasksListWrapperStyled>
 				</>
 			) : (
-				<Loader />
+				isLoading && <Loader />
 			)}
 			<AddTaskFormStyled onSubmit={handleSubmit}>
 				<AddTaskInputStyled

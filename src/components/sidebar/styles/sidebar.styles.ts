@@ -96,7 +96,7 @@ export const SidebarCategoryCardStyled = styled.button`
 	border: 1px solid ${({ theme }) => theme.colors.gray};
 	box-shadow: ${({ theme }) => theme.colors.background} 0px 2px 8px 0px;
 	background-color: ${({ theme }) => theme.colors.background};
-	padding: 1rem;
+	padding: 1rem 0.5rem;
 	text-align: center;
 	transition: 0.3s all;
 	cursor: pointer;
@@ -121,6 +121,12 @@ export const SidebarCategoryCardStyled = styled.button`
 		color: white;
 		margin: 0;
 		font-size: 16px;
+		display: -webkit-box;
+		max-width: 100%;
+		height: fit-content;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	span {
