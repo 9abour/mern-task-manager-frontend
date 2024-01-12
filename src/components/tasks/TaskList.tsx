@@ -61,7 +61,7 @@ const TaskList = () => {
 		<TasksWrapperStyled>
 			<Link href="/">/Home</Link>
 
-			{categoryTasks ? (
+			{categoryTasks?.length ? (
 				<>
 					<TasksTitle>{categoryInfo?.name + " Tasks"}</TasksTitle>
 					<TasksListWrapperStyled>

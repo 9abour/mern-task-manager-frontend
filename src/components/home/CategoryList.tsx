@@ -18,7 +18,7 @@ const CategoryList = () => {
 	useEffect(() => {
 		(async () => {
 			const data: ICategory[] = await handleApiRequest({
-				url: "http://localhost:5000/categories",
+				url: `${process.env.NEXT_PUBLIC_API_URL}/categories`,
 				method: "GET",
 			});
 

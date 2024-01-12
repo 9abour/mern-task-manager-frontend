@@ -17,7 +17,7 @@ const Register = () => {
 
 		try {
 			await handleApiRequest({
-				url: "http://localhost:5000/register",
+				url: `${process.env.NEXT_PUBLIC_API_URL}/register`,
 				method: "POST",
 				dataPayload: {
 					name,

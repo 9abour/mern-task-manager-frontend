@@ -17,7 +17,7 @@ const Login = () => {
 
 		try {
 			const token = await handleApiRequest({
-				url: "http://localhost:5000/singin",
+				url: `${process.env.NEXT_PUBLIC_API_URL}/singin`,
 				method: "POST",
 				dataPayload: {
 					email,

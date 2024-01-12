@@ -7,13 +7,13 @@ import { UserContext } from "../../context/UserContext";
 import { ITask } from "@/types/task.types";
 import handleApiRequest from "@/helpers/handleApiRequest";
 import UserTaskItem from "./UserTaskItem";
-import Cookies from "js-cookie";
+import Loader from "../common/Loader";
+import { PageLoaderWrapper } from "@/styles/loading/loading.styles";
 
 const Profile = () => {
 	const [userCompletedTasks, setUserCompletedTasks] = useState<ITask[]>([]);
 	const [userXP, setUserXP] = useState<number>(0);
-
-	const token = Cookies.get("token");
+	const [isLoading, setIsLoading] = useState(true);
 
 	const router = useRouter();
 	const { user } = useContext(UserContext);
@@ -22,12 +22,19 @@ const Profile = () => {
 		if (user) {
 			getUserTasks();
 			getUserXP();
+			setIsLoading(false);
 		}
+
+		setTimeout(() => {
+			if (!user) {
+				setIsLoading(false);
+			}
+		}, 2000);
 	}, [user]);
 
 	const getUserTasks = async () => {
 		const data: { tasks: ITask[] } = await handleApiRequest({
-			url: `http://localhost:5000/users/tasks/${user?._id}`,
+			url: `${process.env.NEXT_PUBLIC_API_URL}/users/tasks/${user?._id}`,
 			method: "GET",
 		});
 
@@ -38,7 +45,7 @@ const Profile = () => {
 
 	const getUserXP = async () => {
 		const data: { totalUserXP: number } = await handleApiRequest({
-			url: `http://localhost:5000/users/xp/${user?._id}`,
+			url: `${process.env.NEXT_PUBLIC_API_URL}/users/xp/${user?._id}`,
 			method: "GET",
 		});
 
@@ -84,6 +91,10 @@ const Profile = () => {
 				</div>
 			</UserProfileWrapperStyled>
 		</>
+	) : isLoading ? (
+		<PageLoaderWrapper>
+			<Loader />
+		</PageLoaderWrapper>
 	) : (
 		<UserProfileWrapperStyled>
 			<div>

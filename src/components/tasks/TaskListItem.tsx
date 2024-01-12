@@ -22,7 +22,7 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 	const { _id, name, description, xp, isCompleted } = task;
 	const getListCategories = async (taskId: string) => {
 		const categories: ITaskCategory[] = await handleApiRequest({
-			url: `http://localhost:5000/taskCategories/${taskId}`,
+			url: `${process.env.NEXT_PUBLIC_API_URL}/taskCategories/${taskId}`,
 			method: "GET",
 		});
 

@@ -24,7 +24,7 @@ const CategoryCard = ({ category }: { category: ICategory }) => {
 	useEffect(() => {
 		(async () => {
 			const data: ICategoryCount = await handleApiRequest({
-				url: `http://localhost:5000/categories/tasksCount/${_id}`,
+				url: `${process.env.NEXT_PUBLIC_API_URL}/categories/tasksCount/${_id}`,
 				method: "GET",
 			});
 

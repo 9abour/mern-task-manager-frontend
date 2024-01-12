@@ -40,12 +40,12 @@ export const UIDataProvider = ({ children }: IChildren) => {
 					tasks: ITask[];
 					category: ICategory;
 				} = await handleApiRequest({
-					url: `http://localhost:5000/categories/tasks/${slug}`,
+					url: `${process.env.NEXT_PUBLIC_API_URL}/categories/tasks/${slug}`,
 					method: "GET",
 				});
 
 				const categories: ICategory[] = await handleApiRequest({
-					url: `http://localhost:5000/categories`,
+					url: `${process.env.NEXT_PUBLIC_API_URL}/categories`,
 					method: "GET",
 				});
 
@@ -63,7 +63,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 			}
 			const data: { category: ICategory; msg: string } = await handleApiRequest(
 				{
-					url: `http://localhost:5000/categories`,
+					url: `${process.env.NEXT_PUBLIC_API_URL}/categories`,
 					method: "POST",
 					dataPayload: newCategory,
 					headers: {
@@ -84,7 +84,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 				return;
 			}
 			await handleApiRequest({
-				url: `http://localhost:5000/categories/${_id}`,
+				url: `${process.env.NEXT_PUBLIC_API_URL}/categories/${_id}`,
 				method: "DELETE",
 				headers: {
 					Authorization: `Bearer ${JSON.parse(token)}`,
@@ -111,7 +111,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 				msg: string;
 				task: ITask;
 			} = await handleApiRequest({
-				url: `http://localhost:5000/tasks`,
+				url: `${process.env.NEXT_PUBLIC_API_URL}/tasks`,
 				method: "POST",
 				dataPayload: newTaskData,
 				headers: {
@@ -132,7 +132,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 				return;
 			}
 			await handleApiRequest({
-				url: `http://localhost:5000/tasks`,
+				url: `${process.env.NEXT_PUBLIC_API_URL}/tasks`,
 				method: "DELETE",
 				dataPayload: dataPayload,
 				headers: {
@@ -153,7 +153,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	const handleToggleTask = async (_id: string) => {
 		if (token) {
 			await handleApiRequest({
-				url: `http://localhost:5000/toggleTask/${_id}`,
+				url: `${process.env.NEXT_PUBLIC_API_URL}/toggleTask/${_id}`,
 				method: "POST",
 				headers: {
 					Authorization: `Bearer ${JSON.parse(token)}`,

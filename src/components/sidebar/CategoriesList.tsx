@@ -6,6 +6,7 @@ import {
 import SidebarCategoryCard from "./SidebarCategoryCard";
 import AddCategory from "./AddCategory";
 import { UIDataContext } from "../../context/UIDataContext";
+import Loader from "../common/Loader";
 
 const CategoriesList = () => {
 	const uiData = useContext(UIDataContext);
@@ -14,15 +15,18 @@ const CategoriesList = () => {
 		<SidebarCategoriesWrapperStyled>
 			<h2>Categories</h2>
 
-			<SidebarCategoriesListStyled>
-				{uiData?.categories.length
-					? uiData.categories.map(category => (
+			{uiData?.categories.length ? (
+				<>
+					<SidebarCategoriesListStyled>
+						{uiData.categories.map(category => (
 							<SidebarCategoryCard key={category.name} category={category} />
-					  ))
-					: null}
-			</SidebarCategoriesListStyled>
-
-			<AddCategory />
+						))}
+					</SidebarCategoriesListStyled>
+					<AddCategory />
+				</>
+			) : (
+				<Loader />
+			)}
 		</SidebarCategoriesWrapperStyled>
 	);
 };
