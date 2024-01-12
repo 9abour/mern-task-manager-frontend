@@ -77,21 +77,16 @@ const TaskList = () => {
 				<AddTaskInputStyled
 					name="name"
 					type="text"
-					placeholder="Add task name"
+					placeholder="Name"
 					required
 				/>
 				<AddTaskInputStyled
 					name="description"
 					type="text"
-					placeholder="Add task description"
+					placeholder="Description"
 					required
 				/>
-				<AddTaskInputStyled
-					name="xp"
-					type="number"
-					placeholder="Add task XP"
-					required
-				/>
+				<AddTaskInputStyled name="xp" type="number" placeholder="XP" required />
 				<AddTaskButtonStyled type="submit">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
