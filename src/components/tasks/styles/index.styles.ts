@@ -32,6 +32,9 @@ export const TasksListWrapperStyled = styled.ul`
 export const TasksListItemStyled = styled.li`
 	display: flex;
 	align-items: center;
+
+	min-height: 110px;
+
 	padding: 1rem;
 	border-radius: 6px;
 	border: 1px solid ${({ theme }) => theme.colors.gray};
