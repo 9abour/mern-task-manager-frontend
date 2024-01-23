@@ -1,16 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { SidebarCategoryCardStyled } from "./styles/sidebar.styles";
+import React, { useContext } from "react";
+import { SidebarCategoryCardStyled } from "../styles/sidebar.styles";
 import { useParams, useRouter } from "next/navigation";
-import { ICategory, ICategoryCount } from "@/types/category.types";
-import handleApiRequest from "@/helpers/handleApiRequest";
-import { UIDataContext } from "../../context/UIDataContext";
+import { ICategory } from "@/types/category.types";
+import { UIDataContext } from "../../../context/UIDataContext";
+import { useCategoryTasksCount } from "../hooks/useCategoryTasksCount";
 
 const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
-	const [categoryTasksCount, setCategoryTasksCount] = useState<ICategoryCount>({
-		tasksCount: 0,
-		completedCount: 0,
-		tasksXP: 0,
-	});
 	const uiData = useContext(UIDataContext);
 
 	const { push } = useRouter();
@@ -18,24 +13,11 @@ const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 
 	const { _id, name } = category;
 
-	const { tasksCount, tasksXP } = categoryTasksCount;
-
-	useEffect(() => {
-		setTimeout(() => {
-			(async () => {
-				const data: ICategoryCount = await handleApiRequest({
-					url: `${process.env.NEXT_PUBLIC_API_URL}/categories/tasksCount/${_id}`,
-					method: "GET",
-				});
-
-				setCategoryTasksCount(data);
-			})();
-		}, 1000);
-	}, [uiData?.categoryTasks]);
+	const categoryTasksCount = useCategoryTasksCount(_id);
 
 	const isCategoryActive = _id === slug;
 
-	return (
+	return categoryTasksCount ? (
 		<SidebarCategoryCardStyled
 			onClick={() => push(`/category/${_id}`)}
 			className={isCategoryActive ? "active" : ""}
@@ -57,11 +39,11 @@ const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 				</svg>
 			</span>
 			<h4>{name}</h4>
-			<span>Has {tasksCount} tasks</span>
+			<span>Has {categoryTasksCount.tasksCount} tasks</span>
 			<br />
-			<span>{tasksXP} XP</span>
+			<span>{categoryTasksCount.tasksXP} XP</span>
 		</SidebarCategoryCardStyled>
-	);
+	) : null;
 };
 
 export default SidebarCategoryCard;

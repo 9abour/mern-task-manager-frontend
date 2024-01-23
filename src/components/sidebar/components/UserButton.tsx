@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import {
 	SidebarProfileStyled,
 	SidebarSingInWrapperStyled,
-} from "./styles/sidebar.styles";
-import Image from "next/image";
+} from "../styles/sidebar.styles";
 import { Button } from "@/styles/button/button.styles";
 import Link from "next/link";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 

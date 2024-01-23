@@ -6,6 +6,7 @@ export const SidebarStyled = styled.aside`
 	height: 100vh;
 	top: 0;
 	overflow-y: scroll;
+	overscroll-behavior-y: none;
 	background-color: ${({ theme }) => theme.colors.secondaryBackground};
 	transition: 0.5s all;
 	z-index: 9;
@@ -78,10 +79,12 @@ export const SidebarCategoriesWrapperStyled = styled.div`
 	}
 `;
 
-export const SidebarCategoriesListStyled = styled.div`
+export const SidebarCategoriesListStyled = styled.ul`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 6px;
+
+	padding: 0;
 
 	margin-top: 1rem;
 	margin-bottom: 0.5rem;

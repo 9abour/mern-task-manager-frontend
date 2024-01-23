@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
 	TasksListItemCategoriesStyled,
 	TasksListItemCategoriesWrapperStyled,
@@ -9,29 +9,18 @@ import {
 	TasksListItemTitleStyled,
 	TasksListItemXPStyled,
 } from "./styles/index.styles";
-import handleApiRequest from "@/helpers/handleApiRequest";
-import { ITask, ITaskCategory } from "@/types/task.types";
+import { ITask } from "@/types/task.types";
 import { UserContext } from "../../context/UserContext";
 import { UIDataContext } from "../../context/UIDataContext";
+import { useGetTaskCategories } from "./hooks/useGetTaskCategories";
 
 const TaskListItem = ({ task }: { task: ITask }) => {
-	const [taskCategories, setTaskCategories] = useState<ITaskCategory[]>([]);
 	const { user } = useContext(UserContext);
 	const uiDataContext = useContext(UIDataContext);
 
 	const { _id, name, description, xp, isCompleted } = task;
-	const getListCategories = async (taskId: string) => {
-		const categories: ITaskCategory[] = await handleApiRequest({
-			url: `${process.env.NEXT_PUBLIC_API_URL}/taskCategories/${taskId}`,
-			method: "GET",
-		});
 
-		setTaskCategories(categories);
-	};
-
-	useEffect(() => {
-		getListCategories(task._id);
-	}, []);
+	const taskCategories = useGetTaskCategories(_id);
 
 	const toggle = async () => {
 		if (user) {
@@ -47,6 +36,8 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 			});
 		}
 	};
+
+	if (!taskCategories) return null;
 
 	return (
 		<TasksListItemStyled>

@@ -1,26 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
 	SidebarCategoriesListStyled,
 	SidebarCategoriesWrapperStyled,
-} from "./styles/sidebar.styles";
+} from "../styles/sidebar.styles";
 import SidebarCategoryCard from "./SidebarCategoryCard";
 import AddCategory from "./AddCategory";
-import { UIDataContext } from "../../context/UIDataContext";
-import Loader from "../common/Loader";
+import { UIDataContext } from "../../../context/UIDataContext";
 
 const CategoriesList = () => {
 	const uiData = useContext(UIDataContext);
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		if (!uiData?.categoryTasks.length) {
-			setTimeout(() => {
-				if (!uiData?.categoryTasks.length) {
-					setIsLoading(false);
-				}
-			}, 2000);
-		}
-	}, [uiData?.categoryTasks]);
 
 	return (
 		<SidebarCategoriesWrapperStyled>
@@ -35,8 +23,6 @@ const CategoriesList = () => {
 					</SidebarCategoriesListStyled>
 					<AddCategory />
 				</>
-			) : isLoading ? (
-				<Loader />
 			) : (
 				<AddCategory />
 			)}
