@@ -3,6 +3,12 @@ import { createGlobalStyle } from "styled-components";
 const globalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.background};
+    height: 100vh;
+  }
+  
+  main {
+    height: 100%;
+
   }
 
   p, span {
