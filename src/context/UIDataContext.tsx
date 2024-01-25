@@ -63,16 +63,15 @@ export const UIDataProvider = ({ children }: IChildren) => {
 			if (!token) {
 				return;
 			}
-			const data: { category: ICategory; msg: string } = await handleApiRequest(
-				{
+			const data: { category: ICategory; message: string } =
+				await handleApiRequest({
 					url: `${process.env.NEXT_PUBLIC_API_URL}/categories`,
 					method: "POST",
 					dataPayload: newCategory,
 					headers: {
 						Authorization: `Bearer ${JSON.parse(token)}`,
 					},
-				}
-			);
+				});
 			const { category } = data;
 
 			setCategories([...categories, category]);
@@ -110,7 +109,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 			}
 
 			const data: {
-				msg: string;
+				message: string;
 				task: ITask;
 			} = await handleApiRequest({
 				url: `${process.env.NEXT_PUBLIC_API_URL}/tasks`,

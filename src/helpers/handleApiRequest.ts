@@ -19,17 +19,20 @@ const handleApiRequest = async <T>({
 			data: dataPayload,
 		});
 
-		const { msg } = data;
+		const { message } = data;
 
-		if (msg) {
-			toast.success(msg);
+		if (message) {
+			toast.success(message);
 		}
 
 		return data;
 	} catch (error: any) {
-		if (error.response.data.errors.length) {
-			error.response.data.errors.map((error: any) => toast.error(error.msg));
+		if (error.response.data.errors && error.response.data.errors.length) {
+			error.response.data.errors.map((error: any) =>
+				toast.error(error.message)
+			);
 		}
+
 		throw error;
 	}
 };
