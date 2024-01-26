@@ -30,6 +30,12 @@ export const FormStyled = styled.form`
 		padding: 0.5rem 1rem;
 		background: ${({ theme }) => theme.colors.gray};
 		color: ${({ theme }) => theme.colors.textGray};
+
+		&:hover {
+			background: ${({ theme }) => theme.colors.primary};
+			color: ${({ theme }) => theme.colors.secondaryBackground};
+			border-color: ${({ theme }) => theme.colors.secondaryBackground};
+		}
 	}
 
 	p {

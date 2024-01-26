@@ -1,58 +1,20 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { UserProfileWrapperStyled } from "./styles/index.styles";
 import { useRouter } from "next/navigation";
 import { UserContext } from "../../context/UserContext";
-import { ITask } from "@/types/task.types";
-import handleApiRequest from "@/helpers/handleApiRequest";
 import UserTaskItem from "./UserTaskItem";
 import Loader from "../common/Loader";
 import { PageLoaderWrapper } from "@/styles/loading/loading.styles";
+import { useHandleInfoUserProfile } from "./hooks/useHandleInfoUserProfile";
 
 const Profile = () => {
-	const [userCompletedTasks, setUserCompletedTasks] = useState<ITask[]>([]);
-	const [userXP, setUserXP] = useState<number>(0);
-	const [isLoading, setIsLoading] = useState(true);
-
-	const router = useRouter();
 	const { user } = useContext(UserContext);
+	const router = useRouter();
 
-	useEffect(() => {
-		if (user) {
-			getUserTasks();
-			getUserXP();
-			setIsLoading(false);
-		}
-
-		setTimeout(() => {
-			if (!user) {
-				setIsLoading(false);
-			}
-		}, 2000);
-	}, [user]);
-
-	const getUserTasks = async () => {
-		const data: { tasks: ITask[] } = await handleApiRequest({
-			url: `${process.env.NEXT_PUBLIC_API_URL}/users/tasks/${user?._id}`,
-			method: "GET",
-		});
-
-		const { tasks } = data;
-
-		setUserCompletedTasks(tasks);
-	};
-
-	const getUserXP = async () => {
-		const data: { totalUserXP: number } = await handleApiRequest({
-			url: `${process.env.NEXT_PUBLIC_API_URL}/users/xp/${user?._id}`,
-			method: "GET",
-		});
-
-		const { totalUserXP } = data;
-
-		setUserXP(totalUserXP);
-	};
+	const { userCompletedTasks, userXP, isLoading } =
+		useHandleInfoUserProfile(user);
 
 	return user ? (
 		<>

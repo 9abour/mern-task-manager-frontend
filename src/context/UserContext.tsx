@@ -3,7 +3,7 @@
 import { IChildren } from "@/types/index.types";
 import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { getUser } from "@/services/getUser";
+import { getUser } from "@/services/user/getUser";
 
 export interface IUser {
 	_id: string;
