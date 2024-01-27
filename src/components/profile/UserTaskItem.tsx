@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
 	TasksListItemCategoriesStyled,
 	TasksListItemCategoriesWrapperStyled,
@@ -7,26 +7,13 @@ import {
 	TasksListItemTitleStyled,
 	TasksListItemXPStyled,
 } from "./styles/index.styles";
-import { ITask, ITaskCategory } from "@/types/task.types";
-import handleApiRequest from "@/helpers/handleApiRequest";
+import { ITask } from "@/types/task.types";
+import { useListCategories } from "./hooks/useListCategories";
 
 const UserTaskItem = ({ task }: { task: ITask }) => {
-	const [taskCategories, setTaskCategories] = useState<ITaskCategory[]>([]);
+	const { _id, name, description, isCompleted, xp } = task;
 
-	const getListCategories = async (taskId: string) => {
-		const categories: ITaskCategory[] = await handleApiRequest({
-			url: `${process.env.NEXT_PUBLIC_API_URL}/taskCategories/${taskId}`,
-			method: "GET",
-		});
-
-		setTaskCategories(categories);
-	};
-
-	useEffect(() => {
-		getListCategories(task._id);
-	}, []);
-
-	const { _id, name, description, categories, isCompleted, xp } = task;
+	const { taskCategories } = useListCategories(_id);
 
 	return (
 		<TasksListItemStyled>
