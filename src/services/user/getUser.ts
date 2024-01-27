@@ -1,4 +1,4 @@
-import { IUser } from "@/context/UserContext";
+import { IUser } from "@/context/types/uiData.types";
 import handleApiRequest from "@/helpers/handleApiRequest";
 
 export const getUser = async (token: string): Promise<IUser | null> => {

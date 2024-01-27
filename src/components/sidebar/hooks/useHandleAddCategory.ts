@@ -2,7 +2,7 @@ import { UIDataContext } from "@/context/UIDataContext";
 import { useContext } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { IUser } from "@/context/UserContext";
+import { IUser } from "@/context/types/uiData.types";
 
 type IToggleSidebarForm = (value: boolean) => void;
 
