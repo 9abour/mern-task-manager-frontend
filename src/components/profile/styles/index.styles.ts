@@ -80,16 +80,20 @@ export const TasksListItemXPStyled = styled.span`
 
 export const TasksListItemCategoriesWrapperStyled = styled.div``;
 
-export const TasksListItemCategoriesStyled = styled.a`
-	background-color: transparent;
-	border: none;
-	font-size: 14px;
-	margin-right: 0.5rem;
-	padding: 0;
-	color: ${({ theme }) => theme.colors.background};
-	cursor: pointer;
+export const TasksListItemCategoriesStyled = styled.div`
+	display: inline-block;
 
-	&:hover {
-		color: ${({ theme }) => theme.colors.primary};
+	a {
+		background-color: transparent;
+		border: none;
+		font-size: 14px;
+		margin-right: 0.5rem;
+		padding: 0;
+		color: ${({ theme }) => theme.colors.background};
+		cursor: pointer;
+
+		&:hover {
+			color: ${({ theme }) => theme.colors.primary};
+		}
 	}
 `;
