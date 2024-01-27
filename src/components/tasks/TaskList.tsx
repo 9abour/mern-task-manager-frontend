@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
 	AddTaskButtonStyled,
 	AddTaskInputStyled,
@@ -9,64 +9,18 @@ import {
 import TaskListItem from "./TaskListItem";
 import { TasksTitle } from "@/styles/typography/title.styles";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
-import { UserContext } from "../../context/UserContext";
-import Cookies from "js-cookie";
 import { UIDataContext } from "../../context/UIDataContext";
 import Loader from "../common/Loader";
+import { useHandleAddTask } from "./hooks/useHandleAddTask";
+import { useHandleLoadingTasks } from "./hooks/useHandleLoadingTasks";
 
 const TaskList = () => {
-	const { slug } = useParams();
-	const { user } = useContext(UserContext);
 	const uiDataContext = useContext(UIDataContext);
 	const categoryTasks = uiDataContext?.categoryTasks;
 	const categoryInfo = uiDataContext?.currentCategoryInfo;
-	const [isLoading, setIsLoading] = useState(true);
 
-	const token = Cookies.get("token");
-
-	const router = useRouter();
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		if (!user || !token) {
-			router.push("/auth/login");
-			return;
-		}
-
-		if (!(e.target instanceof HTMLFormElement)) {
-			return;
-		}
-
-		const formData = new FormData(e.target);
-		const formElement = e.target;
-
-		const newTask: any = {
-			name: "",
-			description: "",
-			xp: 10,
-			categories: [slug],
-		};
-
-		formData.forEach((value, key) => {
-			newTask[key] = value.toString();
-		});
-
-		uiDataContext?.handleAddTask(newTask);
-
-		formElement.reset();
-	};
-
-	useEffect(() => {
-		if (!categoryTasks?.length) {
-			setTimeout(() => {
-				if (!categoryTasks?.length) {
-					setIsLoading(false);
-				}
-			}, 2000);
-		}
-	}, [categoryTasks]);
+	const { handleSubmit } = useHandleAddTask();
+	const { isLoading } = useHandleLoadingTasks(categoryTasks);
 
 	return (
 		<TasksWrapperStyled>
