@@ -1,36 +1,18 @@
-import generateCategorySlug from "@/helpers/generateCategorySlug";
-import handleApiRequest from "@/helpers/handleApiRequest";
 import { Button } from "@/styles/button/button.styles";
 import { CategoryCardStyled } from "@/styles/category/categoryCard.styles";
-import { ICategory, ICategoryCount } from "@/types/category.types";
+import { ICategory } from "@/types/category.types";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useCategoryCardTasksCount } from "./hooks/useCategoryCardTasksCount";
 
 const CategoryCard = ({ category }: { category: ICategory }) => {
-	const [categoryTasksCount, setCategoryTasksCount] = useState<ICategoryCount>({
-		tasksCount: 0,
-		completedCount: 0,
-		tasksXP: 0,
-	});
-
 	const { push } = useRouter();
 
 	const { _id, name, description } = category;
 
-	const slug = generateCategorySlug(name);
+	const { categoryTasksCount } = useCategoryCardTasksCount(_id);
 
 	const { tasksCount, completedCount, tasksXP } = categoryTasksCount;
-
-	useEffect(() => {
-		(async () => {
-			const data: ICategoryCount = await handleApiRequest({
-				url: `${process.env.NEXT_PUBLIC_API_URL}/categories/tasksCount/${_id}`,
-				method: "GET",
-			});
-
-			setCategoryTasksCount(data);
-		})();
-	}, []);
 
 	return category ? (
 		<CategoryCardStyled>
