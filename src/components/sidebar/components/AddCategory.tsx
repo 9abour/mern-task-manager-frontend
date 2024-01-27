@@ -6,51 +6,19 @@ import {
 import { UserContext } from "../../../context/UserContext";
 import { AddTaskInputStyled } from "../../tasks/styles/index.styles";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { UIDataContext } from "../../../context/UIDataContext";
+import { useHandleAddCategory } from "../hooks/useHandleAddCategory";
 
 const AddCategory = () => {
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const { user } = useContext(UserContext);
-	const uiDataContext = useContext(UIDataContext);
 	const router = useRouter();
 
-	const token = Cookies.get("token");
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		if (!user || !token) {
-			router.push("/auth/login");
-			return;
-		}
-
-		if (!(e.target instanceof HTMLFormElement)) {
-			return;
-		}
-
-		const formData = new FormData(e.target);
-		const formElement = e.target;
-
-		const newCategory: any = {
-			name: "",
-			description: "",
-		};
-
-		formData.forEach((value, key) => {
-			newCategory[key] = value.toString();
-		});
-
-		uiDataContext?.handleAddCategory(newCategory);
-		setIsFormOpen(false);
-
-		formElement.reset();
-	};
+	const { submit } = useHandleAddCategory(user, setIsFormOpen);
 
 	return (
 		<>
 			{isFormOpen ? (
-				<AddCategoryFormStyled onSubmit={handleSubmit}>
+				<AddCategoryFormStyled onSubmit={submit}>
 					<h4>Add Category</h4>
 					<AddTaskInputStyled
 						name="name"
