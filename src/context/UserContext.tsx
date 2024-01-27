@@ -32,7 +32,6 @@ export const UserProvider = ({ children }: IChildren) => {
 			try {
 				if (token) {
 					const user: IUser | null = await getUser(JSON.parse(token));
-
 					setUser(user);
 				}
 			} catch (error) {

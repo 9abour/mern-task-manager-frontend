@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	SidebarCategoriesListStyled,
 	SidebarCategoriesWrapperStyled,
@@ -6,26 +6,31 @@ import {
 import SidebarCategoryCard from "./SidebarCategoryCard";
 import AddCategory from "./AddCategory";
 import { UIDataContext } from "../../../context/UIDataContext";
+import { ICategory } from "@/types/category.types";
 
 const CategoriesList = () => {
+	const [categories, setCategories] = useState<ICategory[]>([]);
+
 	const uiData = useContext(UIDataContext);
+
+	useEffect(() => {
+		if (uiData) {
+			setCategories(uiData.categories);
+		}
+	}, [uiData?.categories]);
 
 	return (
 		<SidebarCategoriesWrapperStyled>
 			<h2>Categories</h2>
 
-			{uiData?.categories.length ? (
-				<>
-					<SidebarCategoriesListStyled>
-						{uiData.categories.map(category => (
-							<SidebarCategoryCard key={category.name} category={category} />
-						))}
-					</SidebarCategoriesListStyled>
-					<AddCategory />
-				</>
-			) : (
+			<>
+				<SidebarCategoriesListStyled>
+					{categories.map(category => (
+						<SidebarCategoryCard key={category.name} category={category} />
+					))}
+				</SidebarCategoriesListStyled>
 				<AddCategory />
-			)}
+			</>
 		</SidebarCategoriesWrapperStyled>
 	);
 };

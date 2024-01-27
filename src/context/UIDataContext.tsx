@@ -34,6 +34,15 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	const { slug } = useParams();
 
 	useEffect(() => {
+		const res: Promise<ICategory[]> = handleApiRequest({
+			url: `${process.env.NEXT_PUBLIC_API_URL}/categories`,
+			method: "GET",
+		});
+
+		res.then(data => setCategories(data));
+	}, []);
+
+	useEffect(() => {
 		setCategoryTasks([]);
 
 		if (slug && slug !== "add") {
@@ -46,14 +55,8 @@ export const UIDataProvider = ({ children }: IChildren) => {
 					method: "GET",
 				});
 
-				const categories: ICategory[] = await handleApiRequest({
-					url: `${process.env.NEXT_PUBLIC_API_URL}/categories`,
-					method: "GET",
-				});
-
 				setCategoryTasks(tasksRes.tasks);
 				setCurrentCategoryInfo(tasksRes.category);
-				setCategories(categories);
 			})();
 		}
 	}, [slug]);

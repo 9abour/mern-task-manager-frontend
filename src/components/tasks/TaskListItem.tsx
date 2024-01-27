@@ -13,6 +13,7 @@ import { ITask } from "@/types/task.types";
 import { UserContext } from "../../context/UserContext";
 import { UIDataContext } from "../../context/UIDataContext";
 import { useGetTaskCategories } from "./hooks/useGetTaskCategories";
+import Link from "next/link";
 
 const TaskListItem = ({ task }: { task: ITask }) => {
 	const { user } = useContext(UserContext);
@@ -86,11 +87,8 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 				{taskCategories ? (
 					<TasksListItemCategoriesWrapperStyled>
 						{taskCategories.map(category => (
-							<TasksListItemCategoriesStyled
-								key={category._id}
-								href={`/category/${category._id}`}
-							>
-								#{category.name}
+							<TasksListItemCategoriesStyled key={category._id}>
+								<Link href={`/category/${category._id}`}>#{category.name}</Link>
 							</TasksListItemCategoriesStyled>
 						))}
 					</TasksListItemCategoriesWrapperStyled>
