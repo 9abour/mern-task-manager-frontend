@@ -13,6 +13,7 @@ export interface IUIDataContext {
 		categoryId: string;
 	}) => void;
 	handleToggleTask: (_id: string) => void;
+	setCurrentCategoryInfo: (category: ICategory) => void;
 }
 
 export interface IUser {

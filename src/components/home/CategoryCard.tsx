@@ -2,11 +2,14 @@ import { Button } from "@/styles/button/button.styles";
 import { CategoryCardStyled } from "@/styles/category/categoryCard.styles";
 import { ICategory } from "@/types/category.types";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 import { useCategoryCardTasksCount } from "./hooks/useCategoryCardTasksCount";
+import { UIDataContext } from "@/context/UIDataContext";
 
 const CategoryCard = ({ category }: { category: ICategory }) => {
 	const { push } = useRouter();
+
+	const uiData = useContext(UIDataContext);
 
 	const { _id, name, description } = category;
 
@@ -31,7 +34,12 @@ const CategoryCard = ({ category }: { category: ICategory }) => {
 					</span>
 				</div>
 
-				<Button onClick={() => push(`/category/${_id}`)}>
+				<Button
+					onClick={() => {
+						push(`/category`);
+						uiData?.setCurrentCategoryInfo(category);
+					}}
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="40"

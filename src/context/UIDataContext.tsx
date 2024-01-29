@@ -4,7 +4,6 @@ import { ICategory } from "@/types/category.types";
 import { IChildren } from "@/types/index.types";
 import { ITask } from "@/types/task.types";
 import { createContext, useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import { IUIDataContext } from "./types/uiData.types";
 import { handleFetchUIData } from "./services/handleFetchUIData";
 
@@ -16,8 +15,6 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	const [currentCategoryInfo, setCurrentCategoryInfo] =
 		useState<ICategory | null>(null);
 
-	const { slug } = useParams();
-
 	useEffect(() => {
 		const res: Promise<ICategory[]> = handleFetchUIData("categories", "GET");
 
@@ -25,20 +22,24 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	}, []);
 
 	useEffect(() => {
-		setCategoryTasks([]);
+		if (currentCategoryInfo) {
+			setCategoryTasks([]);
 
-		if (slug && slug !== "add") {
 			(async () => {
 				const tasksRes: {
 					tasks: ITask[];
 					category: ICategory;
-				} = await handleFetchUIData(`categories/tasks/${slug}`, "GET");
+				} = await handleFetchUIData(
+					`categories/tasks/${currentCategoryInfo?._id}`,
+					"GET"
+				);
 
 				setCategoryTasks(tasksRes.tasks);
-				setCurrentCategoryInfo(tasksRes.category);
 			})();
+		} else if (categories.length) {
+			setCurrentCategoryInfo(categories[0]);
 		}
-	}, [slug]);
+	}, [currentCategoryInfo, categories]);
 
 	const handleAddCategory = async (newCategory: ICategory) => {
 		const data: { category: ICategory } = await handleFetchUIData(
@@ -114,6 +115,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 				handleAddTask,
 				handleRemoveTask,
 				handleToggleTask,
+				setCurrentCategoryInfo,
 			}}
 		>
 			{children}

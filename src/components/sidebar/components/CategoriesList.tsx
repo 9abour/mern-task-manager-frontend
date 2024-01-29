@@ -9,9 +9,11 @@ import { UIDataContext } from "../../../context/UIDataContext";
 import { ICategory } from "@/types/category.types";
 
 const CategoriesList = () => {
-	const [categories, setCategories] = useState<ICategory[]>([]);
-
 	const uiData = useContext(UIDataContext);
+
+	const [categories, setCategories] = useState<ICategory[]>(
+		uiData ? uiData.categories : []
+	);
 
 	useEffect(() => {
 		if (uiData) {

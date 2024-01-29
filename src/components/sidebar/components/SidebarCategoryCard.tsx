@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { SidebarCategoryCardStyled } from "../styles/sidebar.styles";
-import { useParams, useRouter } from "next/navigation";
 import { ICategory } from "@/types/category.types";
 import { UIDataContext } from "../../../context/UIDataContext";
 import { useCategoryTasksCount } from "../hooks/useCategoryTasksCount";
@@ -8,18 +7,15 @@ import { useCategoryTasksCount } from "../hooks/useCategoryTasksCount";
 const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 	const uiData = useContext(UIDataContext);
 
-	const { push } = useRouter();
-	const { slug } = useParams();
-
 	const { _id, name } = category;
 
 	const categoryTasksCount = useCategoryTasksCount(_id);
 
-	const isCategoryActive = _id === slug;
+	const isCategoryActive = _id === uiData?.currentCategoryInfo?._id;
 
 	return categoryTasksCount ? (
 		<SidebarCategoryCardStyled
-			onClick={() => push(`/category/${_id}`)}
+			onClick={() => uiData?.setCurrentCategoryInfo(category)}
 			className={isCategoryActive ? "active" : ""}
 		>
 			<span
