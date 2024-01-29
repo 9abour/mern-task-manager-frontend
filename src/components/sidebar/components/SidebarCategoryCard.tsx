@@ -20,7 +20,10 @@ const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 		>
 			<span
 				className="remove__category"
-				onClick={() => uiData?.handleRemoveCategory(_id)}
+				onClick={e => {
+					e.stopPropagation();
+					uiData?.handleRemoveCategory(_id);
+				}}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

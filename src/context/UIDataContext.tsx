@@ -22,23 +22,24 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	}, []);
 
 	useEffect(() => {
-		if (currentCategoryInfo) {
-			setCategoryTasks([]);
-
-			(async () => {
-				const tasksRes: {
-					tasks: ITask[];
-					category: ICategory;
-				} = await handleFetchUIData(
-					`categories/tasks/${currentCategoryInfo?._id}`,
-					"GET"
-				);
-
-				setCategoryTasks(tasksRes.tasks);
-			})();
-		} else if (categories.length) {
+		if (!currentCategoryInfo) {
 			setCurrentCategoryInfo(categories[0]);
+			return;
 		}
+
+		setCategoryTasks([]);
+
+		(async () => {
+			const tasksRes: {
+				tasks: ITask[];
+				category: ICategory;
+			} = await handleFetchUIData(
+				`categories/tasks/${currentCategoryInfo?._id}`,
+				"GET"
+			);
+
+			setCategoryTasks(tasksRes.tasks);
+		})();
 	}, [currentCategoryInfo, categories]);
 
 	const handleAddCategory = async (newCategory: ICategory) => {
