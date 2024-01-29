@@ -4,12 +4,9 @@ const globalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.background};
     height: 100vh;
+    position: relative;
   }
-  
-  main {
-    height: 100%;
 
-  }
 
   p, span {
     margin: 0;

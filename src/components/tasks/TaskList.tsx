@@ -25,8 +25,7 @@ const TaskList = () => {
 	return (
 		<TasksWrapperStyled>
 			<Link href="/">/Home</Link>
-
-			{categoryTasks?.length ? (
+			{!isLoading && categoryTasks?.length ? (
 				<>
 					<TasksTitle>{categoryInfo?.name + " Tasks"}</TasksTitle>
 					<TasksListWrapperStyled>
@@ -36,8 +35,9 @@ const TaskList = () => {
 					</TasksListWrapperStyled>
 				</>
 			) : (
-				isLoading && <Loader />
+				<Loader />
 			)}
+
 			<AddTaskFormStyled onSubmit={handleSubmit}>
 				<AddTaskInputStyled
 					name="name"

@@ -7,12 +7,10 @@ export const useHandleLoadingTasks = (
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		if (!categoryTasks?.length) {
-			setTimeout(() => {
-				if (!categoryTasks?.length) {
-					setIsLoading(false);
-				}
-			}, 1000);
+		if (categoryTasks?.length) {
+			setIsLoading(false);
+		} else {
+			setIsLoading(true);
 		}
 	}, [categoryTasks]);
 

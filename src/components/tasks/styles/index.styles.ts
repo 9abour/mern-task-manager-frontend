@@ -15,6 +15,11 @@ export const TasksWrapperStyled = styled.main`
 	@media (max-width: 650px) {
 		width: calc(100% - 15px);
 	}
+
+	.loading__wrapper {
+		position: absolute;
+		margin-top: -4rem;
+	}
 `;
 
 export const TasksListWrapperStyled = styled.ul`
