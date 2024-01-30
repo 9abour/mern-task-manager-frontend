@@ -56,7 +56,7 @@ const CategoryList = () => {
 			) : isLoading ? (
 				<Loader />
 			) : (
-				<Button onClick={() => push("/category/add")}>Add category</Button>
+				<Button onClick={() => push("/category")}>Add category</Button>
 			)}
 		</CategoryListWrapper>
 	);

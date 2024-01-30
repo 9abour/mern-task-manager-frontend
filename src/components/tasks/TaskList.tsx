@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
 	AddTaskButtonStyled,
 	AddTaskInputStyled,
@@ -28,7 +28,12 @@ const TaskList = () => {
 
 			{!isLoading ? (
 				<>
-					<TasksTitle>{categoryInfo?.name + " Tasks"}</TasksTitle>
+					{categoryInfo ? (
+						<TasksTitle>{categoryInfo.name + " Tasks"}</TasksTitle>
+					) : (
+						<TasksTitle>No Categories</TasksTitle>
+					)}
+
 					{categoryTasks?.length ? (
 						<TasksListWrapperStyled>
 							{categoryTasks.map(task => (
