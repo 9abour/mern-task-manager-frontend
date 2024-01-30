@@ -6,8 +6,7 @@ const globalStyles = createGlobalStyle`
     height: 100vh;
     position: relative;
   }
-
-
+  
   p, span {
     margin: 0;
   }
