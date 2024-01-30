@@ -5,7 +5,7 @@ export const getCategoryById = (
 	_id: string,
 	categories: ICategory[]
 ): ICategory => {
-	const foundCategory = categories.find(cat => cat._id == "2");
+	const foundCategory = categories.find(cat => cat._id == _id);
 
 	if (!foundCategory) {
 		toast.error(`The category not found`);

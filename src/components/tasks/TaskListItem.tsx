@@ -38,6 +38,14 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 		}
 	};
 
+	const handleChangeCategory = (categoryId: string) => {
+		if (!uiDataContext) return;
+
+		const newCategory = getCategoryById(categoryId, uiDataContext.categories);
+
+		uiDataContext?.setCurrentCategoryInfo(newCategory);
+	};
+
 	if (!taskCategories) return null;
 
 	return (
@@ -89,10 +97,9 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 						{taskCategories.map(category => (
 							<TasksListItemCategoriesStyled key={category._id}>
 								<button
-									onClick={() =>
-										uiDataContext?.setCurrentCategoryInfo(
-											getCategoryById(category._id, uiDataContext.categories)
-										)
+									onClick={() => handleChangeCategory(category._id)}
+									disabled={
+										category._id == uiDataContext?.currentCategoryInfo?._id
 									}
 								>
 									#{category.name}

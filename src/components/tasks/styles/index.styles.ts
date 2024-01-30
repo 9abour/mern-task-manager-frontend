@@ -95,6 +95,10 @@ export const TasksListItemCategoriesStyled = styled.div`
 		&:hover {
 			color: ${({ theme }) => theme.colors.primary};
 		}
+
+		&:disabled {
+			cursor: not-allowed;
+		}
 	}
 `;
 
