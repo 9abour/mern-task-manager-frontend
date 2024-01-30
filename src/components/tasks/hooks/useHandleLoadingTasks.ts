@@ -11,6 +11,7 @@ export const useHandleLoadingTasks = (
 			setIsLoading(false);
 		} else {
 			setIsLoading(true);
+
 			setTimeout(() => {
 				setIsLoading(false);
 			}, 3000);

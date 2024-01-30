@@ -20,6 +20,17 @@ export const TasksWrapperStyled = styled.main`
 		position: absolute;
 		margin-top: -4rem;
 	}
+
+	& > p {
+		text-align: center;
+		border-radius: 6px;
+		padding: 0.5rem;
+		margin: 0 1rem;
+		border: 1px solid ${({ theme }) => theme.colors.gray};
+		box-shadow: ${({ theme }) => theme.colors.background} 0px 2px 8px 0px;
+		background-color: ${({ theme }) => theme.colors.secondaryBackground};
+		color: ${({ theme }) => theme.colors.textGray};
+	}
 `;
 
 export const TasksListWrapperStyled = styled.ul`

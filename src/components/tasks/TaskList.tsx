@@ -26,14 +26,18 @@ const TaskList = () => {
 		<TasksWrapperStyled>
 			<Link href="/">/Home</Link>
 
-			{!isLoading && categoryTasks?.length ? (
+			{!isLoading ? (
 				<>
 					<TasksTitle>{categoryInfo?.name + " Tasks"}</TasksTitle>
-					<TasksListWrapperStyled>
-						{categoryTasks.map(task => (
-							<TaskListItem key={task.name} task={task} />
-						))}
-					</TasksListWrapperStyled>
+					{categoryTasks?.length ? (
+						<TasksListWrapperStyled>
+							{categoryTasks.map(task => (
+								<TaskListItem key={task.name} task={task} />
+							))}
+						</TasksListWrapperStyled>
+					) : (
+						<p>No tasks to show.</p>
+					)}
 				</>
 			) : (
 				<Loader />
