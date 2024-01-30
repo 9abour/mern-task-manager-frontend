@@ -22,25 +22,28 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	}, []);
 
 	useEffect(() => {
-		if (!currentCategoryInfo) {
+		if (!currentCategoryInfo && categories.length) {
 			setCurrentCategoryInfo(categories[0]);
-			return;
 		}
+	}, [categories]);
 
-		setCategoryTasks([]);
+	useEffect(() => {
+		if (currentCategoryInfo) {
+			setCategoryTasks([]);
 
-		(async () => {
-			const tasksRes: {
-				tasks: ITask[];
-				category: ICategory;
-			} = await handleFetchUIData(
-				`categories/tasks/${currentCategoryInfo?._id}`,
-				"GET"
-			);
+			(async () => {
+				const tasksRes: {
+					tasks: ITask[];
+					category: ICategory;
+				} = await handleFetchUIData(
+					`categories/tasks/${currentCategoryInfo?._id}`,
+					"GET"
+				);
 
-			setCategoryTasks(tasksRes.tasks);
-		})();
-	}, [currentCategoryInfo, categories]);
+				setCategoryTasks(tasksRes.tasks);
+			})();
+		}
+	}, [currentCategoryInfo]);
 
 	const handleAddCategory = async (newCategory: ICategory) => {
 		const data: { category: ICategory } = await handleFetchUIData(
@@ -56,6 +59,12 @@ export const UIDataProvider = ({ children }: IChildren) => {
 
 	const handleRemoveCategory = async (_id: string) => {
 		await handleFetchUIData(`categories/${_id}`, "DELETE");
+
+		// The current category should be checked if it is the same as the one you want to delete,
+		// and if so, make the first one active.
+		if (currentCategoryInfo?._id === _id) {
+			setCurrentCategoryInfo(null);
+		}
 
 		const filteredCategories = categories.filter(
 			category => category._id !== _id

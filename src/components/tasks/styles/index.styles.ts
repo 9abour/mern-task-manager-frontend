@@ -72,7 +72,7 @@ export const TasksListItemCategoriesWrapperStyled = styled.div``;
 
 export const TasksListItemCategoriesStyled = styled.div`
 	display: inline-block;
-	a {
+	button {
 		background-color: transparent;
 		border: none;
 		font-size: 14px;

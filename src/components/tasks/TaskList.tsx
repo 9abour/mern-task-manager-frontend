@@ -25,6 +25,7 @@ const TaskList = () => {
 	return (
 		<TasksWrapperStyled>
 			<Link href="/">/Home</Link>
+
 			{!isLoading && categoryTasks?.length ? (
 				<>
 					<TasksTitle>{categoryInfo?.name + " Tasks"}</TasksTitle>
