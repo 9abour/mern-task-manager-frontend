@@ -10,9 +10,9 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Mern Todo App ",
+	title: "Todo App",
 	description:
-		"Mern Todo app where user can login and create his account and have access to manage tasks.",
+		"Todo app where user can login and create his account and have access to manage tasks.",
 };
 
 export default function RootLayout({ children }: IChildren) {
