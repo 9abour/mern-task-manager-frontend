@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	AddTaskButtonStyled,
 	AddTaskInputStyled,
@@ -20,7 +20,7 @@ const TaskList = () => {
 	const categoryInfo = uiDataContext?.currentCategoryInfo;
 
 	const { handleSubmit } = useHandleAddTask();
-	const { isLoading } = useHandleLoadingTasks(categoryTasks);
+	const { isLoading, noTasksFound } = useHandleLoadingTasks(categoryTasks);
 
 	return (
 		<TasksWrapperStyled>
@@ -35,9 +35,9 @@ const TaskList = () => {
 								<TaskListItem key={task.name} task={task} />
 							))}
 						</TasksListWrapperStyled>
-					) : (
-						<p>No tasks to show.</p>
-					)}
+					) : null}
+
+					{noTasksFound && <p>No tasks to show.</p>}
 				</>
 			) : (
 				<Loader />
