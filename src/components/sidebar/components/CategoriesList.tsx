@@ -11,8 +11,8 @@ import { ICategory } from "@/types/category.types";
 const CategoriesList = () => {
 	const uiData = useContext(UIDataContext);
 
-	const [categories, setCategories] = useState<ICategory[]>(
-		uiData ? uiData.categories : []
+	const [categories, setCategories] = useState<ICategory[] | undefined>(
+		uiData ? uiData.categories : undefined
 	);
 
 	useEffect(() => {
@@ -26,11 +26,13 @@ const CategoriesList = () => {
 			<h2>Categories</h2>
 
 			<>
-				<SidebarCategoriesListStyled>
-					{categories.map(category => (
-						<SidebarCategoryCard key={category.name} category={category} />
-					))}
-				</SidebarCategoriesListStyled>
+				{categories ? (
+					<SidebarCategoriesListStyled>
+						{categories.map(category => (
+							<SidebarCategoryCard key={category.name} category={category} />
+						))}
+					</SidebarCategoriesListStyled>
+				) : null}
 				<AddCategory />
 			</>
 		</SidebarCategoriesWrapperStyled>

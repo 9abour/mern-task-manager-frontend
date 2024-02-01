@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import handleApiRequest from "@/helpers/handleApiRequest";
 
-export const handleFetchUIData = async <T>(
+export const handleMakeSecureRequest = async <T>(
 	url: string,
 	method: string,
 	dataPayload?: T

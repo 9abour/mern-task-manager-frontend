@@ -3,52 +3,26 @@
 import { ICategory } from "@/types/category.types";
 import { IChildren } from "@/types/index.types";
 import { ITask } from "@/types/task.types";
-import { createContext, useEffect, useState } from "react";
+import { createContext } from "react";
 import { IUIDataContext } from "./types/uiData.types";
-import { handleFetchUIData } from "./services/handleFetchUIData";
+import { handleMakeSecureRequest } from "./services/handleMakeSecureRequest";
+import { useCategories } from "./hooks/useCategories";
+import { useCurrentCategory } from "./hooks/useCurrentCategory";
 
 export const UIDataContext = createContext<IUIDataContext | null>(null);
 
 export const UIDataProvider = ({ children }: IChildren) => {
-	const [categoryTasks, setCategoryTasks] = useState<ITask[]>([]);
-	const [categories, setCategories] = useState<ICategory[]>([]);
-	const [currentCategoryInfo, setCurrentCategoryInfo] =
-		useState<ICategory | null>(null);
+	const { categories, setCategories } = useCategories();
 
-	console.log({ categories, currentCategoryInfo });
-
-	useEffect(() => {
-		const res: Promise<ICategory[]> = handleFetchUIData("categories", "GET");
-
-		res.then(data => setCategories(data));
-	}, []);
-
-	useEffect(() => {
-		if (!currentCategoryInfo && categories.length) {
-			setCurrentCategoryInfo(categories[0]);
-		}
-	}, [categories]);
-
-	useEffect(() => {
-		if (currentCategoryInfo) {
-			setCategoryTasks([]);
-
-			(async () => {
-				const tasksRes: {
-					tasks: ITask[];
-					category: ICategory;
-				} = await handleFetchUIData(
-					`categories/tasks/${currentCategoryInfo?._id}`,
-					"GET"
-				);
-
-				setCategoryTasks(tasksRes.tasks);
-			})();
-		}
-	}, [currentCategoryInfo]);
+	const {
+		categoryTasks,
+		currentCategoryInfo,
+		setCategoryTasks,
+		setCurrentCategoryInfo,
+	} = useCurrentCategory(categories);
 
 	const handleAddCategory = async (newCategory: ICategory) => {
-		const data: { category: ICategory } = await handleFetchUIData(
+		const data: { category: ICategory } = await handleMakeSecureRequest(
 			"categories",
 			"POST",
 			newCategory
@@ -60,7 +34,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	};
 
 	const handleRemoveCategory = async (_id: string) => {
-		await handleFetchUIData(`categories/${_id}`, "DELETE");
+		await handleMakeSecureRequest(`categories/${_id}`, "DELETE");
 
 		// The current category should be checked if it is the same as the one you want to delete,
 		// and if so, make the first one active.
@@ -79,7 +53,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 		const data: {
 			message: string;
 			task: ITask;
-		} = await handleFetchUIData("tasks", "POST", newTaskData);
+		} = await handleMakeSecureRequest("tasks", "POST", newTaskData);
 
 		const { task } = data;
 
@@ -90,7 +64,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 		taskId: string;
 		categoryId: string;
 	}) => {
-		await handleFetchUIData(`tasks`, "DELETE", dataPayload);
+		await handleMakeSecureRequest(`tasks`, "DELETE", dataPayload);
 
 		const filteredTasks = categoryTasks.filter(
 			task => task._id !== dataPayload.taskId
@@ -100,7 +74,7 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	};
 
 	const handleToggleTask = async (_id: string) => {
-		await handleFetchUIData(`toggleTask/${_id}`, "POST");
+		await handleMakeSecureRequest(`toggleTask/${_id}`, "POST");
 
 		const updateCategoryTasks: ITask[] = categoryTasks.map(task => {
 			if (task._id === _id) {
