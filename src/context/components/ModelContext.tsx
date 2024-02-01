@@ -3,7 +3,7 @@
 import Model from "@/components/model/Model";
 import { IChildren } from "@/types/index.types";
 import { createContext, useState } from "react";
-import { IModelContext } from "./types/model.types";
+import { IModelContext } from "../types/model.types";
 
 const initialState = {
 	isOpen: false,

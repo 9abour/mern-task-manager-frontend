@@ -9,7 +9,7 @@ import {
 import TaskListItem from "./TaskListItem";
 import { TasksTitle } from "@/styles/typography/title.styles";
 import Link from "next/link";
-import { UIDataContext } from "../../context/UIDataContext";
+import { UIDataContext } from "../../context/components/UIDataContext";
 import Loader from "../common/Loader";
 import { useHandleAddTask } from "./hooks/useHandleAddTask";
 import { useHandleLoadingTasks } from "./hooks/useHandleLoadingTasks";

@@ -1,8 +1,8 @@
-import { UserContext } from "@/context/UserContext";
+import { UserContext } from "@/context/components/UserContext";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import Cookies from "js-cookie";
-import { UIDataContext } from "@/context/UIDataContext";
+import { UIDataContext } from "@/context/components/UIDataContext";
 
 export const useHandleAddTask = (currentCategoryId: string | undefined) => {
 	const { user } = useContext(UserContext);

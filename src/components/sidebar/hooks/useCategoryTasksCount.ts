@@ -1,4 +1,4 @@
-import { UIDataContext } from "@/context/UIDataContext";
+import { UIDataContext } from "@/context/components/UIDataContext";
 import handleApiRequest from "@/helpers/handleApiRequest";
 import { ICategoryCount } from "@/types/category.types";
 import { useContext, useEffect, useState } from "react";

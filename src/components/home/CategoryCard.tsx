@@ -4,7 +4,7 @@ import { ICategory } from "@/types/category.types";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { useCategoryCardTasksCount } from "./hooks/useCategoryCardTasksCount";
-import { UIDataContext } from "@/context/UIDataContext";
+import { UIDataContext } from "@/context/components/UIDataContext";
 
 const CategoryCard = ({ category }: { category: ICategory }) => {
 	const { push } = useRouter();

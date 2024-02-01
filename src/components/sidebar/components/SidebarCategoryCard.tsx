@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { SidebarCategoryCardStyled } from "../styles/sidebar.styles";
 import { ICategory } from "@/types/category.types";
-import { UIDataContext } from "../../../context/UIDataContext";
+import { UIDataContext } from "../../../context/components/UIDataContext";
 import { useCategoryTasksCount } from "../hooks/useCategoryTasksCount";
 
 const SidebarCategoryCard = ({ category }: { category: ICategory }) => {

@@ -5,7 +5,7 @@ import {
 } from "../styles/sidebar.styles";
 import { Button } from "@/styles/button/button.styles";
 import Link from "next/link";
-import { UserContext } from "../../../context/UserContext";
+import { UserContext } from "../../../context/components/UserContext";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 

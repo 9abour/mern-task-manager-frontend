@@ -4,10 +4,10 @@ import { ICategory } from "@/types/category.types";
 import { IChildren } from "@/types/index.types";
 import { ITask } from "@/types/task.types";
 import { createContext } from "react";
-import { IUIDataContext } from "./types/uiData.types";
-import { handleMakeSecureRequest } from "./services/handleMakeSecureRequest";
-import { useCategories } from "./hooks/useCategories";
-import { useCurrentCategory } from "./hooks/useCurrentCategory";
+import { IUIDataContext } from "../types/uiData.types";
+import { handleMakeSecureRequest } from "../services/handleMakeSecureRequest";
+import { useCategories } from "../hooks/useCategories";
+import { useCurrentCategory } from "../hooks/useCurrentCategory";
 
 export const UIDataContext = createContext<IUIDataContext>({
 	categoryTasks: [],

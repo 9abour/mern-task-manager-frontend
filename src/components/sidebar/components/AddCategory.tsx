@@ -3,7 +3,7 @@ import {
 	AddCategoryFormStyled,
 	SidebarAddCategoryStyled,
 } from "../styles/sidebar.styles";
-import { UserContext } from "../../../context/UserContext";
+import { UserContext } from "../../../context/components/UserContext";
 import { AddTaskInputStyled } from "../../tasks/styles/index.styles";
 import { useRouter } from "next/navigation";
 import { useHandleAddCategory } from "../hooks/useHandleAddCategory";

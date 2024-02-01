@@ -3,7 +3,7 @@
 import React, { useContext } from "react";
 import { UserProfileWrapperStyled } from "./styles/index.styles";
 import { useRouter } from "next/navigation";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/components/UserContext";
 import UserTaskItem from "./UserTaskItem";
 import Loader from "../common/Loader";
 import { PageLoaderWrapper } from "@/styles/loading/loading.styles";

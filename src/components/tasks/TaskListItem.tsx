@@ -10,8 +10,8 @@ import {
 	TasksListItemXPStyled,
 } from "./styles/index.styles";
 import { ITask } from "@/types/task.types";
-import { UserContext } from "../../context/UserContext";
-import { UIDataContext } from "../../context/UIDataContext";
+import { UserContext } from "../../context/components/UserContext";
+import { UIDataContext } from "../../context/components/UIDataContext";
 import { useGetTaskCategories } from "./hooks/useGetTaskCategories";
 import { getCategoryById } from "@/helpers/getCategoryById";
 

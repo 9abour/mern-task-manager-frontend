@@ -1,4 +1,4 @@
-import { UIDataContext } from "@/context/UIDataContext";
+import { UIDataContext } from "@/context/components/UIDataContext";
 import { useContext } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
