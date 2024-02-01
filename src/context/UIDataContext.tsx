@@ -15,6 +15,8 @@ export const UIDataProvider = ({ children }: IChildren) => {
 	const [currentCategoryInfo, setCurrentCategoryInfo] =
 		useState<ICategory | null>(null);
 
+	console.log({ categories, currentCategoryInfo });
+
 	useEffect(() => {
 		const res: Promise<ICategory[]> = handleFetchUIData("categories", "GET");
 

@@ -1,11 +1,10 @@
 import { UserContext } from "@/context/UserContext";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import Cookies from "js-cookie";
 import { UIDataContext } from "@/context/UIDataContext";
 
-export const useHandleAddTask = () => {
-	const { slug } = useParams();
+export const useHandleAddTask = (currentCategoryId: string | undefined) => {
 	const { user } = useContext(UserContext);
 	const uiDataContext = useContext(UIDataContext);
 	const token = Cookies.get("token");
@@ -30,7 +29,7 @@ export const useHandleAddTask = () => {
 			name: "",
 			description: "",
 			xp: 10,
-			categories: [slug],
+			categories: [currentCategoryId],
 		};
 
 		formData.forEach((value, key) => {
