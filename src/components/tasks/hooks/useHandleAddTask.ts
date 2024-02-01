@@ -36,7 +36,7 @@ export const useHandleAddTask = (currentCategoryId: string | undefined) => {
 			newTask[key] = value.toString();
 		});
 
-		uiDataContext?.handleAddTask(newTask);
+		uiDataContext.handleAddTask(newTask);
 
 		formElement.reset();
 	};

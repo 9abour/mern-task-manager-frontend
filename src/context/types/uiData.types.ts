@@ -15,14 +15,3 @@ export interface IUIDataContext {
 	handleToggleTask: (_id: string) => void;
 	setCurrentCategoryInfo: (category: ICategory) => void;
 }
-
-export interface IUser {
-	_id: string;
-	name: string;
-	email: string;
-	completedTasks: string[];
-}
-
-export interface IUserContext {
-	user: IUser | null;
-}

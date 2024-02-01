@@ -19,7 +19,7 @@ const CategoriesList = () => {
 		if (uiData) {
 			setCategories(uiData.categories);
 		}
-	}, [uiData?.categories]);
+	}, [uiData.categories]);
 
 	return (
 		<SidebarCategoriesWrapperStyled>

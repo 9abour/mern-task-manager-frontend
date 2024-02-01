@@ -11,7 +11,7 @@ const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 
 	const categoryTasksCount = useCategoryTasksCount(_id);
 
-	const isCategoryActive = _id === uiData?.currentCategoryInfo?._id;
+	const isCategoryActive = _id === uiData.currentCategoryInfo?._id;
 
 	return categoryTasksCount ? (
 		<SidebarCategoryCardStyled

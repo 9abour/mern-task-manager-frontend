@@ -25,12 +25,12 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 
 	const toggle = async () => {
 		if (user) {
-			uiDataContext?.handleToggleTask(_id);
+			uiDataContext.handleToggleTask(_id);
 		}
 	};
 
 	const removeTask = () => {
-		if (uiDataContext && uiDataContext.currentCategoryInfo) {
+		if (uiDataContext.currentCategoryInfo) {
 			uiDataContext.handleRemoveTask({
 				taskId: _id,
 				categoryId: uiDataContext.currentCategoryInfo._id,
@@ -39,8 +39,6 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 	};
 
 	const handleChangeCategory = (categoryId: string) => {
-		if (!uiDataContext) return;
-
 		const newCategory = getCategoryById(categoryId, uiDataContext.categories);
 
 		uiDataContext?.setCurrentCategoryInfo(newCategory);
@@ -99,7 +97,7 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 								<button
 									onClick={() => handleChangeCategory(category._id)}
 									disabled={
-										category._id == uiDataContext?.currentCategoryInfo?._id
+										category._id == uiDataContext.currentCategoryInfo?._id
 									}
 								>
 									#{category.name}

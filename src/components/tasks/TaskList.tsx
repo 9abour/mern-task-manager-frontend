@@ -16,8 +16,8 @@ import { useHandleLoadingTasks } from "./hooks/useHandleLoadingTasks";
 
 const TaskList = () => {
 	const uiDataContext = useContext(UIDataContext);
-	const categoryTasks = uiDataContext?.categoryTasks;
-	const currentCategory = uiDataContext?.currentCategoryInfo;
+	const categoryTasks = uiDataContext.categoryTasks;
+	const currentCategory = uiDataContext.currentCategoryInfo;
 
 	const { handleSubmit } = useHandleAddTask(currentCategory?._id);
 	const { isLoading, noTasksFound } = useHandleLoadingTasks(categoryTasks);
@@ -34,7 +34,7 @@ const TaskList = () => {
 						<TasksTitle>No Categories</TasksTitle>
 					)}
 
-					{categoryTasks?.length ? (
+					{categoryTasks.length ? (
 						<TasksListWrapperStyled>
 							{categoryTasks.map(task => (
 								<TaskListItem key={task.name} task={task} />

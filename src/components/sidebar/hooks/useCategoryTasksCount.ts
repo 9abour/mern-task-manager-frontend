@@ -25,7 +25,7 @@ export const useCategoryTasksCount = (_id: string): ICategoryCount | null => {
 
 			setCategoryTasksCount(data);
 		})();
-	}, [uiData?.categoryTasks]);
+	}, [uiData.categoryTasks]);
 
 	return categoryTasksCount;
 };

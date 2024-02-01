@@ -4,7 +4,7 @@ import { IChildren } from "@/types/index.types";
 import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { getUser } from "@/services/user/getUser";
-import { IUser, IUserContext } from "./types/uiData.types";
+import { IUser, IUserContext } from "./types/user.types";
 
 const InitialState = {
 	user: null,

@@ -9,7 +9,17 @@ import { handleMakeSecureRequest } from "./services/handleMakeSecureRequest";
 import { useCategories } from "./hooks/useCategories";
 import { useCurrentCategory } from "./hooks/useCurrentCategory";
 
-export const UIDataContext = createContext<IUIDataContext | null>(null);
+export const UIDataContext = createContext<IUIDataContext>({
+	categoryTasks: [],
+	categories: [],
+	currentCategoryInfo: null,
+	handleAddCategory: () => {},
+	handleRemoveCategory: () => {},
+	handleAddTask: () => {},
+	handleRemoveTask: () => {},
+	handleToggleTask: () => {},
+	setCurrentCategoryInfo: () => {},
+});
 
 export const UIDataProvider = ({ children }: IChildren) => {
 	const { categories, setCategories } = useCategories();

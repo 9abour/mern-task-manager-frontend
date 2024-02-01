@@ -6,6 +6,7 @@ import { IChildren } from "@/types/index.types";
 import { UserProvider } from "@/context/UserContext";
 import { UIDataProvider } from "@/context/UIDataContext";
 import { Toaster } from "sonner";
+import { ModelProvider } from "@/context/ModelContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,11 +28,13 @@ export default function RootLayout({ children }: IChildren) {
 			</head>
 			<body className={inter.className}>
 				<Toaster position="top-right" richColors />
-				<UserProvider>
-					<ThemeProvider>
-						<UIDataProvider>{children}</UIDataProvider>
-					</ThemeProvider>
-				</UserProvider>
+				<ModelProvider>
+					<UserProvider>
+						<ThemeProvider>
+							<UIDataProvider>{children}</UIDataProvider>
+						</ThemeProvider>
+					</UserProvider>
+				</ModelProvider>
 			</body>
 		</html>
 	);
