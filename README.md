@@ -1,4 +1,4 @@
-# MERN TODO (FRONTEND)
+# MERN TASK MANAGER (FRONTEND)
 
 ![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066080/xdsv27aqt3zozsqncnrh.png)
 

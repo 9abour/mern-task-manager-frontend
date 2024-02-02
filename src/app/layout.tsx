@@ -11,9 +11,9 @@ import { ModalProvider } from "@/context/components/ModalContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Todo App",
+	title: "Task Manager",
 	description:
-		"Todo app where user can login and create his account and have access to manage tasks.",
+		"a full-stack application that allows users to explore and choose from a set of features, each associated with specific tasks. Users can complete these tasks to earn XP (Experience Points).",
 };
 
 export default function RootLayout({ children }: IChildren) {
