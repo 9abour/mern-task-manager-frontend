@@ -2,7 +2,7 @@ import { ITask } from "@/types/task.types";
 import { useEffect, useState } from "react";
 import { getUserTasks } from "@/services/user/getUserTasks";
 import { getUserXP } from "@/services/user/getUserXP";
-import { IUser } from "@/context/types/uiData.types";
+import { IUser } from "@/context/types/user.types";
 
 /**
  * Custom hook to handle user profile information.
