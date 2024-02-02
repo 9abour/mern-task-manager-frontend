@@ -1,7 +1,7 @@
 import { ICategory } from "@/types/category.types";
 import { ITask } from "@/types/task.types";
 import { useEffect, useState } from "react";
-import { handleMakeSecureRequest } from "../services/handleMakeSecureRequest";
+import handleApiRequest from "@/helpers/handleApiRequest";
 
 /**
  * Custom hook to manage current category and its tasks.
@@ -29,10 +29,10 @@ export const useCurrentCategory = (categories: ICategory[]) => {
 				const tasksRes: {
 					tasks: ITask[];
 					category: ICategory;
-				} = await handleMakeSecureRequest(
-					`categories/tasks/${currentCategoryInfo?._id}`,
-					"GET"
-				);
+				} = await handleApiRequest({
+					url: `${process.env.NEXT_PUBLIC_API_URL}/categories/tasks/${currentCategoryInfo?._id}`,
+					method: "GET",
+				});
 
 				if (tasksRes) {
 					setCategoryTasks(tasksRes.tasks);
