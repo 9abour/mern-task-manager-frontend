@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { SidebarCategoryCardStyled } from "../styles/sidebar.styles";
 import { ICategory } from "@/types/category.types";
 import { UIDataContext } from "../../../context/components/UIDataContext";
 import { useCategoryTasksCount } from "../hooks/useCategoryTasksCount";
+import { ModalContext } from "@/context/components/ModalContext";
 
 const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
+	const removeCategoryIconRef = useRef(null);
 	const uiData = useContext(UIDataContext);
+
+	const modalContext = useContext(ModalContext);
 
 	const { _id, name } = category;
 
@@ -13,16 +17,21 @@ const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 
 	const isCategoryActive = _id === uiData.currentCategoryInfo?._id;
 
+	const handleRemoveCategory = () => {
+		modalContext.toggle(() => uiData.handleRemoveCategory(_id));
+	};
+
 	return categoryTasksCount ? (
 		<SidebarCategoryCardStyled
-			onClick={() => uiData?.setCurrentCategoryInfo(category)}
+			onClick={() => uiData.setCurrentCategoryInfo(category)}
 			className={isCategoryActive ? "active" : ""}
 		>
 			<span
 				className="remove__category"
+				ref={removeCategoryIconRef}
 				onClick={e => {
 					e.stopPropagation();
-					uiData?.handleRemoveCategory(_id);
+					handleRemoveCategory();
 				}}
 			>
 				<svg

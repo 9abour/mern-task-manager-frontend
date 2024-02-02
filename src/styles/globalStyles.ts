@@ -23,6 +23,10 @@ const globalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   ::-webkit-scrollbar {
 	width: 3px;
 }

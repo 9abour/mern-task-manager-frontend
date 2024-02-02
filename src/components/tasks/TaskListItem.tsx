@@ -14,10 +14,12 @@ import { UserContext } from "../../context/components/UserContext";
 import { UIDataContext } from "../../context/components/UIDataContext";
 import { useGetTaskCategories } from "./hooks/useGetTaskCategories";
 import { getCategoryById } from "@/helpers/getCategoryById";
+import { ModalContext } from "@/context/components/ModalContext";
 
 const TaskListItem = ({ task }: { task: ITask }) => {
 	const { user } = useContext(UserContext);
 	const uiDataContext = useContext(UIDataContext);
+	const modalContext = useContext(ModalContext);
 
 	const { _id, name, description, xp, isCompleted } = task;
 
@@ -109,7 +111,11 @@ const TaskListItem = ({ task }: { task: ITask }) => {
 			</TasksListItemInfoStyled>
 
 			{user ? (
-				<TasksListItemRemoveStyled onClick={removeTask}>
+				<TasksListItemRemoveStyled
+					onClick={() => {
+						modalContext.toggle(removeTask);
+					}}
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="32"
