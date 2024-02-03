@@ -4,12 +4,15 @@ import { ICategory } from "@/types/category.types";
 import { UIDataContext } from "../../../context/components/UIDataContext";
 import { useCategoryTasksCount } from "../hooks/useCategoryTasksCount";
 import { ModalContext } from "@/context/components/ModalContext";
+import { UserContext } from "@/context/components/UserContext";
+import { useRouter } from "next/navigation";
 
 const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 	const removeCategoryIconRef = useRef(null);
 	const uiData = useContext(UIDataContext);
-
 	const modalContext = useContext(ModalContext);
+	const { user } = useContext(UserContext);
+	const { push } = useRouter();
 
 	const { _id, name } = category;
 
@@ -18,6 +21,9 @@ const SidebarCategoryCard = ({ category }: { category: ICategory }) => {
 	const isCategoryActive = _id === uiData.currentCategoryInfo?._id;
 
 	const handleRemoveCategory = () => {
+		if (!user) {
+			return push("/auth/login");
+		}
 		modalContext.toggle(() => uiData.handleRemoveCategory(_id));
 	};
 
