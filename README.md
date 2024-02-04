@@ -1,6 +1,6 @@
 # MERN Task Manager (FRONTEND)
 
-![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066080/xdsv27aqt3zozsqncnrh.png)
+![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1707057977/mcigyitruzc0fwq4yvis.jpg)
 
 ## Usage
 Follow the instructions here: https://github.com/9abour/mern-task-manager-backend/tree/main
