@@ -4,6 +4,8 @@ export const UserProfileWrapperStyled = styled.section`
 	height: 100vh;
 	display: grid;
 	place-items: center;
+    padding: 0 2rem;
+    
 
 	& > div {
 		max-width: 500px;
@@ -26,6 +28,7 @@ export const UserProfileWrapperStyled = styled.section`
 		}
 
 		h2 {
+            text-align: center;
 			color: ${({ theme }) => theme.colors.textGray};
 		}
 
