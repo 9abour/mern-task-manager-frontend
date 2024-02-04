@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# MERN TASK MANAGER (FRONTEND)
-=======
 # MERN Task Manager (FRONTEND)
->>>>>>> 3f1a2a37163e4d48bddd4b4547d2d7114eca0ca2
 
 ![alt text](https://res.cloudinary.com/driq6cudi/image/upload/v1705066080/xdsv27aqt3zozsqncnrh.png)
 
